@@ -34,8 +34,18 @@ function callGenius(){
             var name = data.album.artist.name;
             var album = data.album.name;
             var song = data.title;
-            var albumImg = data.album.cover_art_url
-            var releaseDate = data.release_date;
+
+            if(data.album.cover_art_url === 'https://assets.genius.com/images/default_cover_art.png?1571344784'){
+                var albumImg = 'Assets/Images/default-album-art.png';
+            } else {
+                var albumImg = data.album.cover_art_url
+            }
+
+            if (data.release_date === null){
+                var releaseDate = "N/A"
+            } else {
+                var releaseDate = data.release_date;
+            }
             // console.log(song);
             currentSong = song;
             

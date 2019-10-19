@@ -6,3 +6,7 @@ $('#newSong').on('click',function(){
     callGenius();
 })
 
+$(document).ready(function(){
+    callGenius();
+})
+
