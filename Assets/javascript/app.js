@@ -1,5 +1,6 @@
 
 
-$('#newSong').on('click',function(){
-    callGenius();
+$('#newSong').on('click', function () {
+  callGenius();
 })
+getEvents('Ally Mcbeal');
