@@ -36,7 +36,7 @@ function callGenius(){
             var song = data.title;
             var albumImg = data.album.cover_art_url
             var releaseDate = data.release_date;
-
+            // console.log(song);
             currentSong = song;
             
             image.attr('src', albumImg);
@@ -46,13 +46,18 @@ function callGenius(){
             $('.albumName').text('Album Name: ' + album);
             $('.release').text('Release Date: '+ releaseDate);
             $('.artist').text('Artist Name: '+ name);
+            console.log(name);
+            getEvents(name);
         }
-      
-        console.log(name,album,song, albumImg,releaseDate);
     },
     error: function(xhr,status,error){
         callGenius();
         
     }
-})
+    })
+
+}
+function returnSong(){
+    console.log('current   ' + currentSong);
+    return currentSong;
 }
