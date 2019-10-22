@@ -1,37 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="Assets/css/style.css">
-    <script src='https://cdnjs.com/libraries/bulma'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css" />
+    <link rel="stylesheet" type="text/css" href="Assets/css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <title>Document</title>
-</head>
-<body>
-
-    <div class="container">
-        <div class='songBox'>
-            <div class="header">Random Song Generator</div>
-            <div class='albumImage'></div>
-            <div class='artist'></div>
-            <div class='songName'></div>
-            <div class='albumName'></div>
-            <div class='release'></div>
-            <button id='newSong'>New Song</button>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Random Song Generator
+          </h1>
+          <h2 class="subtitle">
+            <button id="newSong" class="button is-link">New Song</button>
+          </h2>
         </div>
-        <div class='tourInfo'>
-            <div class='tourEvent'></div>
-            <!-- <div class='tourArtists'>list of artists</div> -->
-            <div class='tourDate'></div>
-            <div class='tourSale'></div>
-        </div>
+      </div>
+    </section>
+    <div id="header"></div>
+    <!-- <div class="container"> -->
+    <div id="card">
+      <div id="albumImage"></div>
+      <div id="songBox">
+        <div id="artist"></div>
+        <div id="songName"></div>
+        <div id="albumName"></div>
+        <div id="release"></div>
+      </div>
+      <div id="tourInfo">
+        <div id="tourEvent"></div>
+        <!-- <div id='tourArtists'>list of artists</div> -->
+        <div id="tourDate"></div>
+        <div id="tourSale"></div>
+      </div>
     </div>
-</body>
-<script src='Assets/javascript/apis/youtube.js'></script>
-<script src='Assets/javascript/apis/ticketmaster.js'></script>
-<script src='Assets/javascript/apis/genius.js'></script>
-<script src='Assets/javascript/app.js'></script>
+    <!-- </div> -->
+  </body>
+  <script src="Assets/javascript/apis/youtube.js"></script>
+  <script src="Assets/javascript/apis/ticketmaster.js"></script>
+  <script src="Assets/javascript/apis/genius.js"></script>
+  <script src="Assets/javascript/app.js"></script>
 </html>
