@@ -1,7 +1,4 @@
-* {
-    padding-top:10px;
-    padding-bottom:10px;
-}
+
 body{
     background-color:lightgrey;
     font-size:25px;
@@ -12,13 +9,8 @@ body{
     width:960px;
     margin-left:auto;
     margin-right:auto;
-;
 }
-.songBox, .tourInfo{
-    text-align:center;
-}
-
-.albumImg{
+input, button {
     width:200px;
-    height:auto;
+    height:50px;
 }

@@ -13,25 +13,15 @@
 <body>
 
     <div class="container">
-        <div class='songBox'>
-            <div class="header">Random Song Generator</div>
-            <div class='albumImage'></div>
-            <div class='artist'></div>
-            <div class='songName'></div>
-            <div class='albumName'></div>
-            <div class='release'></div>
-            <button id='newSong'>New Song</button>
-        </div>
-        <div class='tourInfo'>
-            <div class='tourEvent'></div>
-            <!-- <div class='tourArtists'>list of artists</div> -->
-            <div class='tourDate'></div>
-            <div class='tourSale'></div>
-        </div>
+        <div class="search-container">
+              <input type="text" placeholder="Search.." id="searchInput">
+              <button type="submit" id='search'>Search</button>
+          </div>
     </div>
 </body>
 <script src='Assets/javascript/apis/youtube.js'></script>
 <script src='Assets/javascript/apis/ticketmaster.js'></script>
 <script src='Assets/javascript/apis/genius.js'></script>
+<script src='Assets/javascript/apis/musixmatch.js'></script>
 <script src='Assets/javascript/app.js'></script>
 </html>

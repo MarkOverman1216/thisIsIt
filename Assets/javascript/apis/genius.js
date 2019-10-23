@@ -1,10 +1,11 @@
 var token = 'QShSeSrUUqc4s5T9xdLSMu_LKgs3Fh7TZW4V_mZ3gf-yjUkkY1R6m-DZpWOdJfOZ';
+var token1 ='cadbaa98fd2da1ee1cf8a645a287147a';
 // var clientID = '2HDi0C8ZKC78615OhRRfzO_4S5paJj5dctVAz-Gt6RqSGLv6AYQXLXhAUy6bpUml';
 // var clientSecret = 'cKjkmJ5PRkKCnJQrRAHeIR5QC0aJUszREh8Z3VUuF599A5t_zhdG-N0QedauNDC0d7j6RyNntglDLnLe68DPvw'
 var redirect = 'https://markoverman1216.github.io/thisIsIt/'
 var currentSong;
 var maxSong= 2471960; 
-
+var song = 'strobe';
 function getRandomInt(min, max) {
     return (Math.floor(Math.random() * (max)));
 }
@@ -16,52 +17,54 @@ function newRandomSong() {
 //makes call to grab a random song from genius
 function callGenius(){
     //song ID
+    var search = 'kendrick'
     var newSong = newRandomSong();
-    var queryURL = `https://api.genius.com/songs/${newSong}?access_token=${token}`;
+    // var queryURL = `https://api.genius.com/songs/${newSong}?access_token=${token}`;
+    var queryURL = `https://api.musixmatch.com/ws/1.1/q_track=${song}?access_token=${token1}`;
 
     $.ajax({
         url: queryURL,
         method: 'GET',
         success: function(res){
+            console.log(res);
+        // var data = res.response.song;
+        // var image = $('<img width="350" height="auto"/>');
 
-        var data = res.response.song;
-        var image = $('<img width="350" height="auto"/>');
+        // if (data.album === null){
+        //     callGenius();
+        // } else {
 
-        if (data.album === null){
-            callGenius();
-        } else {
+        //     var name = data.album.artist.name;
+        //     var album = data.album.name;
+        //     var song = data.title;
 
-            var name = data.album.artist.name;
-            var album = data.album.name;
-            var song = data.title;
+        //     if(data.album.cover_art_url === 'https://assets.genius.com/images/default_cover_art.png?1571344784'){
+        //         var albumImg = 'Assets/Images/default-album-art.png';
+        //     } else {
+        //         var albumImg = data.album.cover_art_url
+        //     }
 
-            if(data.album.cover_art_url === 'https://assets.genius.com/images/default_cover_art.png?1571344784'){
-                var albumImg = 'Assets/Images/default-album-art.png';
-            } else {
-                var albumImg = data.album.cover_art_url
-            }
-
-            if (data.release_date === null){
-                var releaseDate = "N/A"
-            } else {
-                var releaseDate = data.release_date;
-            }
-            // console.log(song);
-            currentSong = song;
+        //     if (data.release_date === null){
+        //         var releaseDate = "N/A"
+        //     } else {
+        //         var releaseDate = data.release_date;
+        //     }
+        //     // console.log(song);
+        //     currentSong = song;
             
-            image.attr('src', albumImg);
+        //     image.attr('src', albumImg);
 
-            $('.albumImage').html(image);
-            $('.songName').text('Song Name '+ song);
-            $('.albumName').text('Album Name: ' + album);
-            $('.release').text('Release Date: '+ releaseDate);
-            $('.artist').text('Artist Name: '+ name);
-            console.log(name);
-            getEvents(name);
-        }
+        //     $('.albumImage').html(image);
+        //     $('.songName').text('Song Name '+ song);
+        //     $('.albumName').text('Album Name: ' + album);
+        //     $('.release').text('Release Date: '+ releaseDate);
+        //     $('.artist').text('Artist Name: '+ name);
+        //     console.log(name);
+        //     getEvents(name);
+        // }
     },
     error: function(xhr,status,error){
-        callGenius();
+        // callGenius();
         
     }
     })
