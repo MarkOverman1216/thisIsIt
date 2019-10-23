@@ -9,7 +9,8 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/@glidejs/glide'></script>
-    
+
+
 
     <title>Document</title>
 </head>
@@ -22,18 +23,54 @@
           </div>
           <div class='genre'></div>
     </div>
-    <div class="glide">
-        <div class="glide__track" data-glide-el="track">
-          <ul class="glide__slides">
-            <li class="glide__slide">0</li>
-            <li class="glide__slide">1</li>
-            <li class="glide__slide">2</li>
-          </ul>
-        </div>
-      </div>
-</body>
 
-<script src='Assets/javascript/apis/youtube.js'></script>
+    <main>
+        <div id="carousel">
+           <div class="hideLeft">
+            <!-- <img src="https://i1.sndcdn.com/artworks-000165384395-rhrjdn-t500x500.jpg"> -->
+          </div>
+    
+          <div class="prevLeftSecond">
+            <!-- <img src="https://i1.sndcdn.com/artworks-000185743981-tuesoj-t500x500.jpg"> -->
+          </div>
+    
+          <div class="prev">
+            <!-- <img src="https://i1.sndcdn.com/artworks-000158708482-k160g1-t500x500.jpg"> -->
+          </div>
+    
+          <div class="selected">
+            <img src="https://i1.sndcdn.com/artworks-000062423439-lf7ll2-t500x500.jpg">
+          </div>
+    
+          <div class="next">
+            <img src="https://i1.sndcdn.com/artworks-000028787381-1vad7y-t500x500.jpg">
+          </div>
+    
+          <div class="nextRightSecond">
+            <img src="https://i1.sndcdn.com/artworks-000108468163-dp0b6y-t500x500.jpg">
+          </div>
+    
+          <div class="hideRight">
+            <img src="https://i1.sndcdn.com/artworks-000064920701-xrez5z-t500x500.jpg">
+          </div>
+
+          <div class="hideRight">
+              <img src="https://i1.sndcdn.com/artworks-000158708482-k160g1-t500x500.jpg">
+          </div>
+
+          <div class="hideRight">
+              <img src="https://i1.sndcdn.com/artworks-000158708482-k160g1-t500x500.jpg">
+          </div>
+          
+        </div>
+    
+        <div class="buttons">
+          <button id="prev">Prev</button>
+          <button id="next">Next</button>
+        </div>
+      </main>
+</body>
+<script src='Assets/javascript/apis/glider.js'></script>
 <script src='Assets/javascript/apis/ticketmaster.js'></script>
 <script src='Assets/javascript/apis/genius.js'></script>
 <script src='Assets/javascript/apis/musixmatch.js'></script>
