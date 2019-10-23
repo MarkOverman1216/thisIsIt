@@ -1,7 +1,6 @@
-var numFound = 0
 function getSampleAudio(audio, artist) {
   var song = encodeURIComponent(audio)
-
+  var found = false
   console.log(song)
   $.ajax({
     'method': "GET",
@@ -11,12 +10,22 @@ function getSampleAudio(audio, artist) {
       console.log(json)
       json.results.forEach(result => {
         if (result.artistName == artist && result.trackName == audio) {
-          numFound++
-          $('#sampleAudio').append(`<source src=${json.results[0].previewUrl} type="audio/x-m4a">`)
-          console.log(result, artist, 'Found ' + numFound)
+          found == true
+          // $('#sampleAudio').append(`<source src=${result.previewUrl} type="audio/x-m4a">`)
+          var obj = {
+            artist: artist,
+            song: audio,
+            previewUrl: result.previewUrl
+          }
+          returnArray.push(obj);
+          returnArray.sort(() => Math.random() - 0.5);
+
         }
 
       });
+      if (!found) {
+        return ''
+      }
     },
     error: function (xhr, status, err) { }
   });
