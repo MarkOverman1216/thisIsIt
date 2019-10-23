@@ -1,12 +1,10 @@
 //makes apis calls when new song button is pressed
-$('#newSong').on('click',function(){
-    $('.tourEvent').text('');
-    $('.tourDate').text('');
-    $('.tourSale').text('');
-    callGenius();
-})
 
-$(document).ready(function(){
-    callGenius();
-})
+
+$('#search').on('click',function(){
+    // var song = $('#searchInput').val().trim();
+    // searchSong(song);
+    var artist = $('#searchInput').val().trim();
+    searchArtist(artist);
+});
 

@@ -8,30 +8,71 @@
     <script src='https://cdnjs.com/libraries/bulma'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@glidejs/glide'></script>
+
+
+
     <title>Document</title>
 </head>
 <body>
 
     <div class="container">
-        <div class='songBox'>
-            <div class="header">Random Song Generator</div>
-            <div class='albumImage'></div>
-            <div class='artist'></div>
-            <div class='songName'></div>
-            <div class='albumName'></div>
-            <div class='release'></div>
-            <button id='newSong'>New Song</button>
-        </div>
-        <div class='tourInfo'>
-            <div class='tourEvent'></div>
-            <!-- <div class='tourArtists'>list of artists</div> -->
-            <div class='tourDate'></div>
-            <div class='tourSale'></div>
-        </div>
+        <div class="search-container">
+              <input type="text" placeholder="Search.." id="searchInput">
+              <button type="submit" id='search'>Search</button>
+          </div>
+          <div class='genre'></div>
     </div>
+
+    <main>
+        <div id="carousel">
+           <div class="hideLeft">
+            <!-- <img src="https://i1.sndcdn.com/artworks-000165384395-rhrjdn-t500x500.jpg"> -->
+          </div>
+    
+          <div class="prevLeftSecond">
+            <!-- <img src="https://i1.sndcdn.com/artworks-000185743981-tuesoj-t500x500.jpg"> -->
+          </div>
+    
+          <div class="prev">
+            <!-- <img src="https://i1.sndcdn.com/artworks-000158708482-k160g1-t500x500.jpg"> -->
+          </div>
+    
+          <div class="selected">
+            <img src="https://i1.sndcdn.com/artworks-000062423439-lf7ll2-t500x500.jpg">
+          </div>
+    
+          <div class="next">
+            <img src="https://i1.sndcdn.com/artworks-000028787381-1vad7y-t500x500.jpg">
+          </div>
+    
+          <div class="nextRightSecond">
+            <img src="https://i1.sndcdn.com/artworks-000108468163-dp0b6y-t500x500.jpg">
+          </div>
+    
+          <div class="hideRight">
+            <img src="https://i1.sndcdn.com/artworks-000064920701-xrez5z-t500x500.jpg">
+          </div>
+
+          <div class="hideRight">
+              <img src="https://i1.sndcdn.com/artworks-000158708482-k160g1-t500x500.jpg">
+          </div>
+
+          <div class="hideRight">
+              <img src="https://i1.sndcdn.com/artworks-000158708482-k160g1-t500x500.jpg">
+          </div>
+          
+        </div>
+    
+        <div class="buttons">
+          <button id="prev">Prev</button>
+          <button id="next">Next</button>
+        </div>
+      </main>
 </body>
-<script src='Assets/javascript/apis/youtube.js'></script>
+<script src='Assets/javascript/apis/glider.js'></script>
 <script src='Assets/javascript/apis/ticketmaster.js'></script>
 <script src='Assets/javascript/apis/genius.js'></script>
+<script src='Assets/javascript/apis/musixmatch.js'></script>
 <script src='Assets/javascript/app.js'></script>
 </html>
