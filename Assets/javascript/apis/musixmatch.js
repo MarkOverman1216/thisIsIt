@@ -3,6 +3,7 @@ var query = `https://api.musixmatch.com/ws/1.1/`;
 var genreArray = [];
 var returnArray = [];
 var page = 1;
+window.returnIndex = 0;
 //search genres return 10 random songs or artists within the genre and display
 //search for a similar artist, return 10 random similar artists and display
 //each returned
@@ -51,12 +52,17 @@ function searchArtist(artist) {
 
         }).done(function () {
             searchGenre(genreArray);
-        }).done(function () {
-
-        })
+         }).done(function () {
+            setTimeout(function(){
+                if(returnIndex === 0 ){
+                    loadPlayer(0)
+                } else {
+                    loadPlayer(1);
+                }
+         },700);
     })
 
-}
+})}
 function gliderJS(data) {
     console.log(data);
 
@@ -98,6 +104,7 @@ function searchGenre(array) {
             method: 'GET',
             success: function (data) {
                 var dataList = data.message.body.track_list;
+                console.log(dataList);
                 for (i = 0; i < dataList.length; i++) {
                     var dataGenreList = (dataList[i].track.primary_genres.music_genre_list);
                     var check = true;
@@ -110,13 +117,50 @@ function searchGenre(array) {
                         }
                     }
                     if (check === true) {
-                        getSampleAudio(dataList[i].track.track_name, dataList[i].track.artist_name)
+                        var  obj ={
+                            artist: dataList[i].track.artist_name,
+                            song: dataList[i].track.track_name
+                        }
+                        returnArray.push(obj);
+                        returnArray.sort(() => Math.random() - 0.5);
+                        // getSampleAudio(dataList[i].track.track_name, dataList[i].track.artist_name)
                     } else {
                         check = true;
                     }
                 }
-                gliderJS(returnArray);
             }
         })
     }
+}
+
+
+function loadPlayer(num){
+    console.log(returnArray);
+    if(returnArray.length > 0){
+        console.log(`Current index at ${window.returnIndex}`)
+        if(num === 0){
+            returnAudio();
+        } else if(num === 1){
+            window.returnIndex = window.returnIndex + 1;
+            returnAudio();
+        } else if(num === 2){
+            window.returnIndex = window.returnIndex + 2;
+            returnAudio();
+        } else if (num === -1){
+            window.returnIndex = window.returnIndex - 1;
+            returnAudio();
+        } else if (num === -2){
+            window.returnIndex = window.returnIndex - 2;
+            returnAudio();
+        }
+    } else {
+        console.log('false no songs in array');
+    }
+    console.log(window.returnIndex);
+}
+
+function returnAudio(){
+    var nextSong = [];
+    nextSong.push(returnArray[returnIndex].song, returnArray[returnIndex].artist);
+    getSampleAudio(nextSong[0],nextSong[1]);
 }

@@ -24,10 +24,9 @@ function moveToSelected(element) {
   
     $(nextSecond).nextAll().removeClass().addClass('hideRight');
     $(prevSecond).prevAll().removeClass().addClass('hideLeft');
-  
   }
-  
-  
+
+
   $(document).keydown(function(e) {
       switch(e.which) {
           case 37: 
@@ -36,6 +35,7 @@ function moveToSelected(element) {
   
           case 39:
           moveToSelected('next');
+          loadPlayer(1);
           break;
   
           default: return;
@@ -43,15 +43,33 @@ function moveToSelected(element) {
       e.preventDefault();
   });
   
-  $('#carousel div').click(function() {
+  $('#carousel div').click(function(event) {
+   if(this.className === 'next'){
+    console.log(this.className);
+     loadPlayer(1);
+   }else if (this.className === 'prev'){
+     console.log(this.className);
+    loadPlayer(-1);
+   } else if(this.className === 'nextRightSecond'){
+    console.log(this.className);
+     loadPlayer(2);
+   } else if(this.className ==='prevLeftSecond'){
+     loadPlayer(-2);
+   }
     moveToSelected($(this));
   });
   
+  // $(document).on('click','.next',function(){
+  //   console.log('test');
+  // })
   $('#prev').click(function() {
     moveToSelected('prev');
   });
   
   $('#next').click(function() {
+    // loadPlayer();
+
     moveToSelected('next');
+    
   });
   
