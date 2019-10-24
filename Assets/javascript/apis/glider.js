@@ -1,75 +1,93 @@
-
-function moveToSelected(element) {
-
-    if (element == "next") {
-      var selected = $(".selected").next();
-    } else if (element == "prev") {
-      var selected = $(".selected").prev();
-    } else {
-      var selected = element;
-    }
-  
-    var next = $(selected).next();
-    var prev = $(selected).prev();
-    var prevSecond = $(prev).prev();
-    var nextSecond = $(next).next();
-  
-    $(selected).removeClass().addClass("selected");
-  
-    $(prev).removeClass().addClass("prev");
-    $(next).removeClass().addClass("next");
-  
-    $(nextSecond).removeClass().addClass("nextRightSecond");
-    $(prevSecond).removeClass().addClass("prevLeftSecond");
-  
-    $(nextSecond).nextAll().removeClass().addClass('hideRight');
-    $(prevSecond).prevAll().removeClass().addClass('hideLeft');
+function moveToSelected(direction) {
+  if (direction == 'next') {
+    var hideLeft = $('.prevLeftSecond')
+    var prevLeftSecond = $('.prev')
+    var prev = $('.selected')
+    var selected = $('.next')
+    var next = $('.nextRightSecond')
+    var nextRightSecond = $('.hideRight')
+    var hideRight = $('.hideLeft')
+    getSampleAudio(
+      window.returnArray[window.returnIndex + 3].song,
+      window.returnArray[window.returnIndex + 3].artist,
+      window.returnIndex + 3,
+      '.hideRight'
+    )
+  } else if (direction == 'prev') {
+    var hideLeft = $('.hideRight')
+    var prevLeftSecond = $('.hideLeft')
+    var prev = $('.prevLeftSecond')
+    var selected = $('.prev')
+    var next = $('.selected')
+    var nextRightSecond = $('.next')
+    var hideRight = $('.nextRightSecond')
+    getSampleAudio(
+      window.returnArray[window.returnIndex - 3].song,
+      window.returnArray[window.returnIndex - 3].artist,
+      window.returnIndex - 3,
+      '.hideLeft'
+    )
+  } else {
+    // var selected = direction
+    console.log(`we don't want it to get here`)
   }
+  selected.removeClass().addClass('selected')
+  setMusic()
 
+  prev.removeClass().addClass('prev')
+  next.removeClass().addClass('next')
 
-  $(document).keydown(function(e) {
-      switch(e.which) {
-          case 37: 
-          moveToSelected('prev');
-          break;
-  
-          case 39:
-          moveToSelected('next');
-          loadPlayer(1);
-          break;
-  
-          default: return;
-      }
-      e.preventDefault();
-  });
-  
-  $('#carousel div').click(function(event) {
-   if(this.className === 'next'){
-    console.log(this.className);
-     loadPlayer(1);
-   }else if (this.className === 'prev'){
-     console.log(this.className);
-    loadPlayer(-1);
-   } else if(this.className === 'nextRightSecond'){
-    console.log(this.className);
-     loadPlayer(2);
-   } else if(this.className ==='prevLeftSecond'){
-     loadPlayer(-2);
-   }
-    moveToSelected($(this));
-  });
-  
-  // $(document).on('click','.next',function(){
-  //   console.log('test');
-  // })
-  $('#prev').click(function() {
-    moveToSelected('prev');
-  });
-  
-  $('#next').click(function() {
-    // loadPlayer();
+  nextRightSecond.removeClass().addClass('nextRightSecond')
+  prevLeftSecond.removeClass().addClass('prevLeftSecond')
 
-    moveToSelected('next');
-    
-  });
-  
+  hideRight.removeClass().addClass('hideRight')
+  hideLeft.removeClass().addClass('hideLeft')
+
+  // hideRight.html(`<img src=${window.returnArray[window.returnIndex].albumCover}/>`)
+}
+
+$(document).keydown(function(e) {
+  switch (e.which) {
+    case 37:
+      moveToSelected('prev')
+      break
+
+    case 39:
+      moveToSelected('next')
+      loadPlayer(1)
+      break
+
+    default:
+      return
+  }
+  e.preventDefault()
+})
+
+$('#carousel div').click(function(event) {
+  if (this.className === 'next') {
+    console.log(this.className)
+    loadPlayer(1)
+  } else if (this.className === 'prev') {
+    console.log(this.className)
+    loadPlayer(-1)
+  } else if (this.className === 'nextRightSecond') {
+    console.log(this.className)
+    loadPlayer(2)
+  } else if (this.className === 'prevLeftSecond') {
+    loadPlayer(-2)
+  }
+  moveToSelected(this.className)
+})
+
+$(document).on('click', '.next', function() {
+  moveToSelected('next')
+})
+$('#prev').click(function() {
+  moveToSelected('prev')
+})
+
+// $('#next').click(function() {
+//   // loadPlayer();
+
+//   moveToSelected('next')
+// })
