@@ -7,9 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
 
-    <script src='https://cdnjs.com/libraries/bulma'></script>
+
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/@glidejs/glide'></script>
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -42,17 +41,17 @@
 
     <div class='musicBanner'>
         <div id="carousel">
-            <!-- <div class="hideLeft">
+            <div class="hideLeft">
                 <img src="https://i1.sndcdn.com/artworks-000165384395-rhrjdn-t500x500.jpg">
             </div>
 
-            <div class="prevLeftSecond">
+           <div class="prevLeftSecond">
                 <img src="https://i1.sndcdn.com/artworks-000185743981-tuesoj-t500x500.jpg">
             </div>
 
             <div class="prev">
                 <img src="https://i1.sndcdn.com/artworks-000158708482-k160g1-t500x500.jpg">
-            </div> -->
+            </div>
 
             <div class="selected">
                 <img src="">
@@ -70,18 +69,12 @@
                 <img src="https://i1.sndcdn.com/artworks-000064920701-xrez5z-t500x500.jpg">
             </div>
 
-            <div class="hideRight">
-                <img src="https://i1.sndcdn.com/artworks-000158708482-k160g1-t500x500.jpg">
-            </div>
-
-            <div class="hideRight">
-                <img src="https://i1.sndcdn.com/artworks-000158708482-k160g1-t500x500.jpg">
-            </div>
+            
         </div>
         <div class='audioBox'>   
                 <div class='artistName'></div>
                 <div class='songName'></div>     
-                <audio controls="" autoplay=""  name="media" id='sampleAudio'>
+                <audio controls autoplay='0' volume='0.1' name="media" id='sampleAudio'>
                         <source id='preview' src='' type="audio/x-m4a">
                 </audio>
         </div>
@@ -94,8 +87,6 @@
 </body>
 <script src='Assets/javascript/apis/glider.js'></script>
 <script src="Assets/javascript/apis/itunes.js"></script>
-<script src='Assets/javascript/apis/ticketmaster.js'></script>
-<script src='Assets/javascript/apis/genius.js'></script>
 <script src='Assets/javascript/apis/musixmatch.js'></script>
 <script src='Assets/javascript/app.js'></script>
 

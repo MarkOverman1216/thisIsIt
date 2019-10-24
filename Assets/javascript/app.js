@@ -13,6 +13,8 @@ $(document).ready(function(){
     
     $('#nextSong').on('click',function(){
         event.preventDefault()
+
+      
         // loadPlayer();
     })
     $('#searchInput').keydown(function(event){
@@ -21,6 +23,10 @@ $(document).ready(function(){
             var artist = $('#searchInput').val().trim();
             searchArtist(artist);
             window.returnIndex = 0;
+            var div = $('<div>')
+            $('#carousel').append(`            <div class="hideRight">
+            <img src="https://i1.sndcdn.com/artworks-000158708482-k160g1-t500x500.jpg">
+        </div>`)
         }
     })
     

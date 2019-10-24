@@ -1,7 +1,7 @@
 var apiKey = 'cadbaa98fd2da1ee1cf8a645a287147a';
 var query = `https://api.musixmatch.com/ws/1.1/`;
 var genreArray = [];
-var returnArray = [];
+window.returnArray = [];
 var page = 1;
 window.returnIndex = 0;
 //search genres return 10 random songs or artists within the genre and display
@@ -11,7 +11,7 @@ window.returnIndex = 0;
 
 function searchSong(song) {
     var songID;
-    var query = `https://api.musixmatch.com/ws/1.1/track.search?q_track=${song}&s_track_rating=desc&page_size=100&page=${page}&apikey=${apiKey}`;
+    var query = `https://api.musixmatch.com/ws/1.1/track.search?q_track=${song}&s_track_rating=desc&page_size=50&page=${page}&apikey=${apiKey}`;
 
     $.ajax({
         url: query,
@@ -63,10 +63,7 @@ function searchArtist(artist) {
     })
 
 })}
-function gliderJS(data) {
-    console.log(data);
 
-}
 //retrieves artistID
 function getArtistID(data, artist) {
     var dataList = data.message.body.artist_list;
@@ -94,17 +91,17 @@ function getGenreId(data) {
 
 //pulls songs based on genre and returns to the user;
 function searchGenre(array) {
-    returnArray = [];
+    window.returnArray = [];
     for (i = 0; i < genreArray.length; i++) {
         var genreID = genreArray[i];
-        var extension = `track.search?f_music_genre_id=${genreID}&page_size=100&s_track_rating=desc&apikey=${apiKey}`;
+        var extension = `track.search?f_music_genre_id=${genreID}&page_size=50&s_track_rating=desc&apikey=${apiKey}`;
 
         $.ajax({
             url: query + extension,
             method: 'GET',
             success: function (data) {
                 var dataList = data.message.body.track_list;
-                console.log(dataList);
+                // console.log(dataList);
                 for (i = 0; i < dataList.length; i++) {
                     var dataGenreList = (dataList[i].track.primary_genres.music_genre_list);
                     var check = true;
@@ -121,12 +118,15 @@ function searchGenre(array) {
                             artist: dataList[i].track.artist_name,
                             song: dataList[i].track.track_name
                         }
-                        returnArray.push(obj);
-                        returnArray.sort(() => Math.random() - 0.5);
+                        window.returnArray.push(obj);
+                        window.returnArray.sort(() => Math.random() - 0.5);
                         // getSampleAudio(dataList[i].track.track_name, dataList[i].track.artist_name)
                     } else {
                         check = true;
                     }
+                    setupData(window.returnArray);
+                    
+
                 }
             }
         })
@@ -135,8 +135,8 @@ function searchGenre(array) {
 
 
 function loadPlayer(num){
-    console.log(returnArray);
-    if(returnArray.length > 0){
+    // console.log(window.returnArray);
+    if(window.returnArray.length > 0){
         console.log(`Current index at ${window.returnIndex}`)
         if(num === 0){
             returnAudio();
@@ -161,6 +161,6 @@ function loadPlayer(num){
 
 function returnAudio(){
     var nextSong = [];
-    nextSong.push(returnArray[returnIndex].song, returnArray[returnIndex].artist);
+    nextSong.push(window.returnArray[returnIndex].song, window.returnArray[returnIndex].artist);
     getSampleAudio(nextSong[0],nextSong[1]);
 }

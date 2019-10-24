@@ -1,30 +1,35 @@
-
-function moveToSelected(element) {
-
-    if (element == "next") {
-      var selected = $(".selected").next();
-    } else if (element == "prev") {
-      var selected = $(".selected").prev();
-    } else {
-      var selected = element;
-    }
-  
-    var next = $(selected).next();
-    var prev = $(selected).prev();
-    var prevSecond = $(prev).prev();
-    var nextSecond = $(next).next();
-  
-    $(selected).removeClass().addClass("selected");
-  
-    $(prev).removeClass().addClass("prev");
-    $(next).removeClass().addClass("next");
-  
-    $(nextSecond).removeClass().addClass("nextRightSecond");
-    $(prevSecond).removeClass().addClass("prevLeftSecond");
-  
-    $(nextSecond).nextAll().removeClass().addClass('hideRight');
-    $(prevSecond).prevAll().removeClass().addClass('hideLeft');
+function moveToSelected(direction) {
+  if (direction == 'next') {
+    var hideLeft = $('.prevLeftSecond')
+    var prevLeftSecond = $('.prev')
+    var prev = $('.selected')
+    var selected = $('.next')
+    var next = $('.nextRightSecond')
+    var nextRightSecond = $('.hideRight')
+    var hideRight = $('.hideLeft')
+  } else if (direction == 'prev') {
+    var hideLeft = $('.hideRight')
+    var prevLeftSecond = $('.hideLeft')
+    var prev = $('.prevLeftSecond')
+    var selected = $('.prev')
+    var next = $('.selected')
+    var nextRightSecond = $('.next')
+    var hideRight = $('.nextRightSecond')
+  } else {
+    // var selected = direction
+    console.log("we don't want it to get here");
   }
+  selected.removeClass().addClass('selected')
+
+  prev.removeClass().addClass('prev')
+  next.removeClass().addClass('next')
+
+  nextRightSecond.removeClass().addClass('nextRightSecond')
+  prevLeftSecond.removeClass().addClass('prevLeftSecond')
+
+  hideRight.removeClass().addClass('hideRight')
+  hideLeft.removeClass().addClass('hideLeft')
+}
 
 
   $(document).keydown(function(e) {
@@ -56,7 +61,7 @@ function moveToSelected(element) {
    } else if(this.className ==='prevLeftSecond'){
      loadPlayer(-2);
    }
-    moveToSelected($(this));
+    moveToSelected(this.className);
   });
   
   // $(document).on('click','.next',function(){
@@ -72,4 +77,6 @@ function moveToSelected(element) {
     moveToSelected('next');
     
   });
+  
+
   
