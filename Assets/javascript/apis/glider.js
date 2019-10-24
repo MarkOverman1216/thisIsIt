@@ -7,12 +7,13 @@ function moveToSelected(direction) {
     var next = $('.nextRightSecond')
     var nextRightSecond = $('.hideRight')
     var hideRight = $('.hideLeft')
+    if(window.returnArray.length - 3 >= window.returnIndex){ 
     getSampleAudio(
       window.returnArray[window.returnIndex + 3].song,
       window.returnArray[window.returnIndex + 3].artist,
       window.returnIndex + 3,
       '.hideRight'
-    )
+    )}
   } else if (direction == 'prev') {
     var hideLeft = $('.hideRight')
     var prevLeftSecond = $('.hideLeft')
@@ -21,12 +22,13 @@ function moveToSelected(direction) {
     var next = $('.selected')
     var nextRightSecond = $('.next')
     var hideRight = $('.nextRightSecond')
+    if(window.returnIndex >= 3){
     getSampleAudio(
       window.returnArray[window.returnIndex - 3].song,
       window.returnArray[window.returnIndex - 3].artist,
       window.returnIndex - 3,
       '.hideLeft'
-    )
+    )}
   } else {
     // var selected = direction
     // console.log(`we don't want it to get here`)
@@ -49,13 +51,13 @@ function moveToSelected(direction) {
 $(document).keydown(function(e) {
   switch (e.which) {
     case 37:
-      moveToSelected('prev')
       loadPlayer(-1)
+      moveToSelected('prev')
       break
 
     case 39:
-      moveToSelected('next')
       loadPlayer(1)
+      moveToSelected('next')
       break
 
     default:
