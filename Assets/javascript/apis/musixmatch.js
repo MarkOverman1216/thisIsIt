@@ -124,7 +124,7 @@ function searchGenre(array) {
               song: dataList[i].track.track_name,
             }
             returnArray.push(obj)
-            // returnArray.sort(() => Math.random() - 0.5)
+            returnArray.sort(() => Math.random() - 0.5)
             // getSampleAudio(dataList[i].track.track_name, dataList[i].track.artist_name)
           } else {
             check = true
@@ -176,6 +176,7 @@ function loadPlayer(num) {
     // console.log(`Current index at ${window.returnIndex}`)
     if (num === 0) {
       returnAudio()
+
     } else if (num === 1) {
       window.returnIndex = window.returnIndex + 1
       returnAudio()
@@ -183,8 +184,8 @@ function loadPlayer(num) {
       window.returnIndex = window.returnIndex + 2
       returnAudio()
     } else if (num === -1) {
-      window.returnIndex = window.returnIndex - 1
       returnAudio()
+      window.returnIndex = window.returnIndex - 1
     } else if (num === -2) {
       window.returnIndex = window.returnIndex - 2
       returnAudio()
