@@ -29,7 +29,7 @@ function moveToSelected(direction) {
     )
   } else {
     // var selected = direction
-    console.log(`we don't want it to get here`)
+    // console.log(`we don't want it to get here`)
   }
   selected.removeClass().addClass('selected')
   setMusic()
@@ -50,6 +50,7 @@ $(document).keydown(function(e) {
   switch (e.which) {
     case 37:
       moveToSelected('prev')
+      loadPlayer(-1)
       break
 
     case 39:
@@ -65,17 +66,17 @@ $(document).keydown(function(e) {
 
 $('#carousel div').click(function(event) {
   if (this.className === 'next') {
-    console.log(this.className)
+    // console.log(this.className)
     loadPlayer(1)
   } else if (this.className === 'prev') {
-    console.log(this.className)
+    // console.log(this.className)
     loadPlayer(-1)
-  } else if (this.className === 'nextRightSecond') {
-    console.log(this.className)
-    loadPlayer(2)
-  } else if (this.className === 'prevLeftSecond') {
-    loadPlayer(-2)
-  }
+  } //else if (this.className === 'nextRightSecond') {
+  //   // console.log(this.className)
+  //   loadPlayer(2)
+  // } else if (this.className === 'prevLeftSecond') {
+  //   loadPlayer(-2)
+  // }
   moveToSelected(this.className)
 })
 

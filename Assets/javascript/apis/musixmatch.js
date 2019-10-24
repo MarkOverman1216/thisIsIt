@@ -4,6 +4,7 @@ var genreArray = []
 var returnArray = []
 var page = 1
 window.returnIndex = 0
+var firstSuccess = true
 //search genres return 10 random songs or artists within the genre and display
 //search for a similar artist, return 10 random similar artists and display
 //each returned
@@ -17,11 +18,11 @@ function searchSong(song) {
     method: 'GET',
     success: function(data) {
       var dataList = data.message.body.track_list
-      // console.log(dataList);
+      // console.log(dataList)
       for (i = 0; i < dataList.length; i++) {
-        console.log(dataList[i].track.artist_name)
+        // console.log(dataList[i].track.artist_name)
       }
-      console.log('-----------------------')
+      // console.log('-----------------------')
     },
   })
 }
@@ -36,7 +37,7 @@ function searchArtist(artist) {
     method: 'GET',
     success: function(data) {
       artistID = getArtistID(data, artist)
-      console.log(artistID)
+      // console.log(artistID)
     },
   }).done(function() {
     extension = `artist.albums.get?artist_id=${artistID}&apikey=${apiKey}`
@@ -62,7 +63,7 @@ function searchArtist(artist) {
   })
 }
 function gliderJS(data) {
-  console.log(data)
+  // console.log(data)
 }
 //retrieves artistID
 function getArtistID(data, artist) {
@@ -91,6 +92,7 @@ function getGenreId(data) {
 
 //pulls songs based on genre and returns to the user;
 function searchGenre(array) {
+  firstSuccess = true
   returnArray = []
   for (i = 0; i < genreArray.length; i++) {
     var genreID = genreArray[i]
@@ -101,7 +103,7 @@ function searchGenre(array) {
       method: 'GET',
       success: function(data) {
         var dataList = data.message.body.track_list
-        console.log(dataList)
+        // console.log(dataList)
         for (i = 0; i < dataList.length; i++) {
           var dataGenreList = dataList[i].track.primary_genres.music_genre_list
           var check = true
@@ -122,21 +124,56 @@ function searchGenre(array) {
               song: dataList[i].track.track_name,
             }
             returnArray.push(obj)
-            returnArray.sort(() => Math.random() - 0.5)
+            // returnArray.sort(() => Math.random() - 0.5)
             // getSampleAudio(dataList[i].track.track_name, dataList[i].track.artist_name)
           } else {
             check = true
           }
+        }
+        if (firstSuccess) {
+          firstSuccess = false
+          console.log(returnArray)
+          loadStart()
         }
       },
     })
   }
 }
 
+function loadStart() {
+  $('.hideLeft').html(`<img>`)
+  $('.prevLeftSecond').html(`<img>`)
+  $('.prev').html(`<img>`)
+  getSampleAudio(
+    window.returnArray[window.returnIndex].song,
+    window.returnArray[window.returnIndex].artist,
+    window.returnIndex,
+    '.selected'
+  )
+  getSampleAudio(
+    window.returnArray[window.returnIndex + 1].song,
+    window.returnArray[window.returnIndex + 1].artist,
+    window.returnIndex + 1,
+    '.next'
+  )
+  getSampleAudio(
+    window.returnArray[window.returnIndex + 2].song,
+    window.returnArray[window.returnIndex + 2].artist,
+    window.returnIndex + 2,
+    '.nextRightSecond'
+  )
+  getSampleAudio(
+    window.returnArray[window.returnIndex + 3].song,
+    window.returnArray[window.returnIndex + 3].artist,
+    window.returnIndex + 3,
+    '.hideRight'
+  )
+}
+
 function loadPlayer(num) {
-  console.log(returnArray)
+  // console.log(returnArray)
   if (returnArray.length > 0) {
-    console.log(`Current index at ${window.returnIndex}`)
+    // console.log(`Current index at ${window.returnIndex}`)
     if (num === 0) {
       returnAudio()
     } else if (num === 1) {
@@ -153,9 +190,9 @@ function loadPlayer(num) {
       returnAudio()
     }
   } else {
-    console.log('false no songs in array')
+    // console.log('false no songs in array')
   }
-  console.log(window.returnIndex)
+  // console.log(window.returnIndex)
 }
 
 function returnAudio() {
