@@ -11,7 +11,7 @@ var firstSuccess = true
 
 function searchSong(song) {
   var songID
-  var query = `https://api.musixmatch.com/ws/1.1/track.search?q_track=${song}&s_track_rating=desc&page_size=100&page=${page}&apikey=${apiKey}`
+  var query = `https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.search?q_track=${song}&s_track_rating=desc&page_size=100&page=${page}&apikey=${apiKey}`
 
   $.ajax({
     url: query,
